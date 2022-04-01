@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Pizzapool Reservations
+ * Plugin Name: PizzaPool Reservations
  * Plugin URI:  https://shakahri.cc/
  * Description: The Pizzapool Reservations helpers plugin
  * Version:     1.0.0
- * Author:      Sudipto SHakhari
+ * Author:      Sudipto Shakhari
  * Author URI:  https://shakahri.cc/
  * License:     GPLv2+
  * Text Domain: pizzapool-reservations
@@ -36,39 +36,39 @@
 defined( 'ABSPATH' ) || exit();
 
 /**
- * WC_Serial_Numbers class.
+ * PizzaPool Reservations.
  *
- * @class WC_Serial_Numbers contains everything for the plugin.
+ * @class PizzaPool_Reservations contains everything for the plugin.
  */
-class WC_Serial_Numbers {
+class PizzaPool_Reservations {
 	/**
-	 * WC_Serial_Numbers version.
+	 * PizzaPool_Reservations version.
 	 *
 	 * @var string
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
-	public $version = '1.2.9';
+	public $version = '1.0.0';
 	
 	/**
 	 * This plugin's instance
 	 *
-	 * @var WC_Serial_Numbers The one true WC_Serial_Numbers
+	 * @var PizzaPool_Reservations The one true PizzaPool_Reservations
 	 * @since 1.0
 	 */
 	private static $instance;
 	
 	/**
-	 * Main WC_Serial_Numbers Instance
+	 * Main PizzaPool_Reservations Instance
 	 *
-	 * Insures that only one instance of WC_Serial_Numbers exists in memory at any one
+	 * Insures that only one instance of PizzaPool_Reservations exists in memory at any one
 	 * time. Also prevents needing to define globals all over the place.
 	 *
-	 * @return WC_Serial_Numbers The one true WC_Serial_Numbers
+	 * @return PizzaPool_Reservations The one true PizzaPool_Reservations
 	 * @since 1.0.0
 	 * @static var array $instance
 	 */
 	public static function init() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof WC_Serial_Numbers ) ) {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof PizzaPool_Reservations ) ) {
 			self::$instance = new self();
 		}
 		
@@ -80,7 +80,7 @@ class WC_Serial_Numbers {
 	 * Return plugin version.
 	 *
 	 * @return string
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 **/
 	public function get_version() {
@@ -91,7 +91,7 @@ class WC_Serial_Numbers {
 	 * Plugin URL getter.
 	 *
 	 * @return string
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function plugin_url() {
 		return untrailingslashit( plugins_url( '/', __FILE__ ) );
@@ -101,7 +101,7 @@ class WC_Serial_Numbers {
 	 * Plugin path getter.
 	 *
 	 * @return string
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function plugin_path() {
 		return untrailingslashit( plugin_dir_path( __FILE__ ) );
@@ -111,7 +111,7 @@ class WC_Serial_Numbers {
 	 * Plugin base path name getter.
 	 *
 	 * @return string
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function plugin_basename() {
 		return plugin_basename( __FILE__ );
@@ -125,20 +125,7 @@ class WC_Serial_Numbers {
 	 *
 	 */
 	public function localization_setup() {
-		load_plugin_textdomain( 'wc-serial-numbers', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages' );
-	}
-	
-	/**
-	 * Determines if the pro version active.
-	 *
-	 * @return bool
-	 * @since 1.0.0
-	 *
-	 */
-	public function is_pro_active() {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		
-		return is_plugin_active( 'wc-serial-numbers-pro/wc-serial-numbers-pro.php' ) == true;
+		load_plugin_textdomain( 'pizzapool-reservations', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages' );
 	}
 	
 	/**
@@ -156,11 +143,11 @@ class WC_Serial_Numbers {
 	
 	/**
 	 * WooCommerce plugin dependency notice
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function wc_missing_notice() {
 		if ( ! $this->is_wc_active() ) {
-			$message = sprintf( __( '<strong>WooCommerce Serial Numbers</strong> requires <strong>WooCommerce</strong> installed and activated. Please Install %s WooCommerce. %s', 'wc-serial-numbers' ),
+			$message = sprintf( __( '<strong>Pizza Pool Reservations</strong> requires <strong>WooCommerce</strong> installed and activated. Please Install %s WooCommerce. %s', 'pizzapool-reservations' ),
 				'<a href="https://wordpress.org/plugins/woocommerce/" target="_blank">', '</a>' );
 			echo sprintf( '<div class="notice notice-error"><p>%s</p></div>', $message );
 		}
@@ -173,7 +160,7 @@ class WC_Serial_Numbers {
 	 * @param string|bool $value
 	 *
 	 * @return void
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 *
 	 */
 	private function define( $name, $value ) {
@@ -193,7 +180,7 @@ class WC_Serial_Numbers {
 	 */
 	
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wc-serial-numbers' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'pizzapool-reservations' ), '1.0.0' );
 	}
 	
 	/**
@@ -204,11 +191,11 @@ class WC_Serial_Numbers {
 	 */
 	
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wc-serial-numbers' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'pizzapool-reservations' ), '1.0.0' );
 	}
 	
 	/**
-	 * WC_Serial_Numbers constructor.
+	 * PizzaPool_Reservations constructor.
 	 */
 	private function __construct() {
 		$this->define_constants();
@@ -222,31 +209,30 @@ class WC_Serial_Numbers {
 	/**
 	 * Define all constants
 	 * @return void
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function define_constants() {
-		$this->define( 'WC_SERIAL_NUMBER_PLUGIN_VERSION', $this->version );
-		$this->define( 'WC_SERIAL_NUMBER_PLUGIN_FILE', __FILE__ );
-		$this->define( 'WC_SERIAL_NUMBER_PLUGIN_DIR', dirname( __FILE__ ) );
-		$this->define( 'WC_SERIAL_NUMBER_PLUGIN_INC_DIR', dirname( __FILE__ ) . '/includes' );
+		$this->define( 'PizzaPool_Reservations_PLUGIN_VERSION', $this->version );
+		$this->define( 'PizzaPool_Reservations_PLUGIN_FILE', __FILE__ );
+		$this->define( 'PizzaPool_Reservations_PLUGIN_DIR', dirname( __FILE__ ) );
+		$this->define( 'PizzaPool_Reservations_PLUGIN_INC_DIR', dirname( __FILE__ ) . '/includes' );
 	}
 	
 	/**
 	 * Activate plugin.
 	 *
 	 * @return void
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function activate_plugin() {
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-installer.php';
-		WC_Serial_Numbers_Installer::install();
+	
 	}
 	
 	/**
 	 * Deactivate plugin.
 	 *
 	 * @return void
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function deactivate_plugin() {
 	
@@ -256,7 +242,7 @@ class WC_Serial_Numbers {
 	 * Load the plugin when WooCommerce loaded.
 	 *
 	 * @return void
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function init_plugin() {
 		$this->includes();
@@ -266,24 +252,24 @@ class WC_Serial_Numbers {
 	
 	/**
 	 * Include required core files used in admin and on the frontend.
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 */
 	public function includes() {
-		require_once dirname( __FILE__ ) . '/includes/wc-serial-numbers-functions.php';
-		require_once dirname( __FILE__ ) . '/includes/wc-serial-numbers-misc-functions.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-query.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-installer.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-order-handler.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-encryption.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-ajax.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-api.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-cron.php';
-		require_once dirname( __FILE__ ) . '/includes/class-wc-serial-numbers-compat.php';
-		
-		if ( is_admin() ) {
-			require_once dirname( __FILE__ ) . '/includes/admin/class-wc-serial-numbers-admin.php';
-		}
-		do_action( 'wc_serial_numbers__loaded' );
+//		require_once dirname( __FILE__ ) . '/includes/pizzapool-reservations-functions.php';
+//		require_once dirname( __FILE__ ) . '/includes/pizzapool-reservations-misc-functions.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-query.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-installer.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-order-handler.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-encryption.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-ajax.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-api.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-cron.php';
+//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-compat.php';
+//
+//		if ( is_admin() ) {
+//			require_once dirname( __FILE__ ) . '/includes/admin/class-pizzapool-reservations-admin.php';
+//		}
+		do_action( 'PizzaPool_Reservations__loaded' );
 	}
 	
 	
@@ -299,15 +285,15 @@ class WC_Serial_Numbers {
 	
 	
 	/**
-	 * When WP has loaded all plugins, trigger the `wc_serial_numbers__loaded` hook.
+	 * When WP has loaded all plugins, trigger the `PizzaPool_Reservations__loaded` hook.
 	 *
-	 * This ensures `wc_serial_numbers__loaded` is called only after all other plugins
+	 * This ensures `PizzaPool_Reservations__loaded` is called only after all other plugins
 	 * are loaded, to avoid issues caused by plugin directory naming changing
 	 *
 	 * @since 1.0.0
 	 */
 	public function on_plugins_loaded() {
-		do_action( 'wc_serial_numbers__loaded' );
+		do_action( 'PizzaPool_Reservations__loaded' );
 	}
 	
 }
@@ -320,12 +306,12 @@ class WC_Serial_Numbers {
  * Use this function like you would a global variable, except without needing
  * to declare the global.
  *
- * @return WC_Serial_Numbers
- * @since 1.2.0
+ * @return PizzaPool_Reservations
+ * @since 1.0.0
  */
-function wc_serial_numbers() {
-	return WC_Serial_Numbers::init();
+function PizzaPool_Reservations() {
+	return PizzaPool_Reservations::init();
 }
 
 //lets go.
-wc_serial_numbers();
+PizzaPool_Reservations();
