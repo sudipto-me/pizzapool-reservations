@@ -265,11 +265,12 @@ class PizzaPool_Reservations {
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-api.php';
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-cron.php';
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-compat.php';
-		require_once dirname( __FILE__ ). '/includes/class-wc-cart-controller.php';
-		if ( is_admin() ) {
+		require_once dirname( __FILE__ ) . '/includes/class-wc-cart-controller.php';
+		require_once dirname( __FILE__ ) . '/includes/class-wc-order-dine-in-data-store-cpt.php';
+//		if ( is_admin() ) {
 			require_once dirname( __FILE__ ) . '/includes/class-wc-order-types.php';
 //			require_once dirname( __FILE__ ) . '/includes/admin/class-pizzapool-reservations-admin.php';
-		}
+		//}
 		do_action( 'PizzaPool_Reservations__loaded' );
 	}
 
