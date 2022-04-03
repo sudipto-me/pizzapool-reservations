@@ -255,22 +255,9 @@ class PizzaPool_Reservations {
 	 * @since 1.0.0
 	 */
 	public function includes() {
-//		require_once dirname( __FILE__ ) . '/includes/pizzapool-reservations-functions.php';
-//		require_once dirname( __FILE__ ) . '/includes/pizzapool-reservations-misc-functions.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-query.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-installer.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-order-handler.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-encryption.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-ajax.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-api.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-cron.php';
-//		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-compat.php';
 		require_once dirname( __FILE__ ) . '/includes/class-wc-cart-controller.php';
 		require_once dirname( __FILE__ ) . '/includes/class-wc-order-dine-in-data-store-cpt.php';
-//		if ( is_admin() ) {
-			require_once dirname( __FILE__ ) . '/includes/class-wc-order-types.php';
-//			require_once dirname( __FILE__ ) . '/includes/admin/class-pizzapool-reservations-admin.php';
-		//}
+		require_once dirname( __FILE__ ) . '/includes/class-wc-order-types.php';
 		do_action( 'PizzaPool_Reservations__loaded' );
 	}
 
