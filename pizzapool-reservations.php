@@ -48,7 +48,7 @@ class PizzaPool_Reservations {
 	 * @since 1.0.0
 	 */
 	public $version = '1.0.0';
-	
+
 	/**
 	 * This plugin's instance
 	 *
@@ -56,7 +56,7 @@ class PizzaPool_Reservations {
 	 * @since 1.0
 	 */
 	private static $instance;
-	
+
 	/**
 	 * Main PizzaPool_Reservations Instance
 	 *
@@ -71,11 +71,11 @@ class PizzaPool_Reservations {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof PizzaPool_Reservations ) ) {
 			self::$instance = new self();
 		}
-		
+
 		return self::$instance;
 	}
-	
-	
+
+
 	/**
 	 * Return plugin version.
 	 *
@@ -86,7 +86,7 @@ class PizzaPool_Reservations {
 	public function get_version() {
 		return $this->version;
 	}
-	
+
 	/**
 	 * Plugin URL getter.
 	 *
@@ -96,7 +96,7 @@ class PizzaPool_Reservations {
 	public function plugin_url() {
 		return untrailingslashit( plugins_url( '/', __FILE__ ) );
 	}
-	
+
 	/**
 	 * Plugin path getter.
 	 *
@@ -106,7 +106,7 @@ class PizzaPool_Reservations {
 	public function plugin_path() {
 		return untrailingslashit( plugin_dir_path( __FILE__ ) );
 	}
-	
+
 	/**
 	 * Plugin base path name getter.
 	 *
@@ -116,7 +116,7 @@ class PizzaPool_Reservations {
 	public function plugin_basename() {
 		return plugin_basename( __FILE__ );
 	}
-	
+
 	/**
 	 * Initialize plugin for localization
 	 *
@@ -127,7 +127,7 @@ class PizzaPool_Reservations {
 	public function localization_setup() {
 		load_plugin_textdomain( 'pizzapool-reservations', false, plugin_basename( dirname( __FILE__ ) ) . '/i18n/languages' );
 	}
-	
+
 	/**
 	 * Determines if the wc active.
 	 *
@@ -137,10 +137,10 @@ class PizzaPool_Reservations {
 	 */
 	public function is_wc_active() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		
+
 		return is_plugin_active( 'woocommerce/woocommerce.php' ) == true;
 	}
-	
+
 	/**
 	 * WooCommerce plugin dependency notice
 	 * @since 1.0.0
@@ -152,7 +152,7 @@ class PizzaPool_Reservations {
 			echo sprintf( '<div class="notice notice-error"><p>%s</p></div>', $message );
 		}
 	}
-	
+
 	/**
 	 * Define constant if not already defined
 	 *
@@ -168,7 +168,7 @@ class PizzaPool_Reservations {
 			define( $name, $value );
 		}
 	}
-	
+
 	/**
 	 * Throw error on object clone
 	 *
@@ -178,22 +178,22 @@ class PizzaPool_Reservations {
 	 * @access protected
 	 * @return void
 	 */
-	
+
 	public function __clone() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'pizzapool-reservations' ), '1.0.0' );
 	}
-	
+
 	/**
 	 * Disable unserializing of the class
 	 *
 	 * @access protected
 	 * @return void
 	 */
-	
+
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'pizzapool-reservations' ), '1.0.0' );
 	}
-	
+
 	/**
 	 * PizzaPool_Reservations constructor.
 	 */
@@ -201,11 +201,11 @@ class PizzaPool_Reservations {
 		$this->define_constants();
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
-		
+
 		add_action( 'woocommerce_loaded', array( $this, 'init_plugin' ) );
 		add_action( 'admin_notices', array( $this, 'wc_missing_notice' ) );
 	}
-	
+
 	/**
 	 * Define all constants
 	 * @return void
@@ -217,7 +217,7 @@ class PizzaPool_Reservations {
 		$this->define( 'PizzaPool_Reservations_PLUGIN_DIR', dirname( __FILE__ ) );
 		$this->define( 'PizzaPool_Reservations_PLUGIN_INC_DIR', dirname( __FILE__ ) . '/includes' );
 	}
-	
+
 	/**
 	 * Activate plugin.
 	 *
@@ -225,9 +225,9 @@ class PizzaPool_Reservations {
 	 * @since 1.0.0
 	 */
 	public function activate_plugin() {
-	
+
 	}
-	
+
 	/**
 	 * Deactivate plugin.
 	 *
@@ -235,9 +235,9 @@ class PizzaPool_Reservations {
 	 * @since 1.0.0
 	 */
 	public function deactivate_plugin() {
-	
+
 	}
-	
+
 	/**
 	 * Load the plugin when WooCommerce loaded.
 	 *
@@ -248,8 +248,8 @@ class PizzaPool_Reservations {
 		$this->includes();
 		$this->init_hooks();
 	}
-	
-	
+
+
 	/**
 	 * Include required core files used in admin and on the frontend.
 	 * @since 1.0.0
@@ -265,14 +265,15 @@ class PizzaPool_Reservations {
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-api.php';
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-cron.php';
 //		require_once dirname( __FILE__ ) . '/includes/class-pizzapool-reservations-compat.php';
-//
-//		if ( is_admin() ) {
+		require_once dirname( __FILE__ ). '/includes/class-wc-cart-controller.php';
+		if ( is_admin() ) {
+			require_once dirname( __FILE__ ) . '/includes/class-wc-order-types.php';
 //			require_once dirname( __FILE__ ) . '/includes/admin/class-pizzapool-reservations-admin.php';
-//		}
+		}
 		do_action( 'PizzaPool_Reservations__loaded' );
 	}
-	
-	
+
+
 	/**
 	 * Hook into actions and filters.
 	 *
@@ -282,8 +283,8 @@ class PizzaPool_Reservations {
 		add_action( 'plugins_loaded', array( $this, 'localization_setup' ) );
 		//add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ), - 1 );
 	}
-	
-	
+
+
 	/**
 	 * When WP has loaded all plugins, trigger the `PizzaPool_Reservations__loaded` hook.
 	 *
@@ -295,7 +296,7 @@ class PizzaPool_Reservations {
 	public function on_plugins_loaded() {
 		do_action( 'PizzaPool_Reservations__loaded' );
 	}
-	
+
 }
 
 
